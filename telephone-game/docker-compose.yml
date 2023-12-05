@@ -1,0 +1,46 @@
+services:
+  broker:
+    build:
+      dockerfile: ./broker.Dockerfile
+    expose:
+      - 8080
+
+  caller0:
+    build:
+      context: .
+      dockerfile: caller.Dockerfile
+    command: "--args='broker 8080 0 5'"
+    depends_on:
+      - broker
+
+  caller1:
+    build:
+      context: .
+      dockerfile: caller.Dockerfile
+    command: "--args='broker 8080 1 5'"
+    depends_on:
+      - broker
+
+  caller2:
+    build:
+      context: .
+      dockerfile: caller.Dockerfile
+    command: "--args='broker 8080 2 5'"
+    depends_on:
+      - broker
+
+  caller3:
+    build:
+      context: .
+      dockerfile: caller.Dockerfile
+    command: "--args='broker 8080 3 5'"
+    depends_on:
+      - broker
+
+  caller4:
+    build:
+      context: .
+      dockerfile: caller.Dockerfile
+    command: "--args='broker 8080 4 5'"
+    depends_on:
+      - broker
